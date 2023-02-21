@@ -1,16 +1,16 @@
-import React from 'react'
+import Button from 'react-bootstrap/Button'
+import React from 'react';
 
-const CardWidget = () => {
+function CardWidget() {
   return (
-    <div>
-    <span>
-        🛒
-    </span>
-    <span> 8</span>
-    </div>
-  )
+    <>
+      <div className='cart'>
+      <Button href='/Cart' size='lg' variant="outline-danger">🛒<span className='material-symbol-outlined'>24</span></Button>{' '}
+      
+      </div>
+    </>
+    
+  );
 }
 
-
-
-export default CardWidget
+export default CardWidget;
