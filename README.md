@@ -19,4 +19,7 @@ npm run dev
 
 ![gif PreEntrega2Guzman ](./src/assets/Grabaci%C3%B3n%20de%20pantalla%202023-03-10%20a%20la(s)%2022.46.28.gif)
 ---
+---
+## Resultados en la base de datos
 
+![gif PreEntrega2Guzman ](./src/assets/base%20de%20datos.gif)
