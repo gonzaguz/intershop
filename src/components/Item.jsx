@@ -32,14 +32,5 @@ const Item = ({info}) => {
   );
 }
 
-// const Item = ({info}) => {
-  /* return (
-    <Link to={`/detalle/${info.id}`} className='producto'>
-        <img src={info.image} alt="" />
-        <p>{info.title}</p>
-    </Link>
-  )
-} */
-
 export default Item
 
