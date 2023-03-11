@@ -4,6 +4,7 @@ import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 const ItemListContainer = () => {
   const [data, setData] = useState([])
 
@@ -23,9 +24,6 @@ const ItemListContainer = () => {
      
 
    },[categoryId])
-
-
-
 
 
   return (

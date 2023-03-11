@@ -1,19 +1,23 @@
-import React from 'react'
+import React, {useState} from 'react'
 import ItemCount from './ItemCount'
 import Card from 'react-bootstrap/Card';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useCartContext } from '../context/CartContext';
+import { Link } from 'react-router-dom';
+import { Button, Container } from 'react-bootstrap';
 
 
 
 
-const ItemDetail = ({data}) => {
+
+export const ItemDetail = ({ data }) => {
+  const [goToCart, setGoToCart] = useState(false)
+  const {addProduct} = useCartContext()
     const onAdd = (quantity) => {
-        console.log(`compraste ${quantity} unidades`)
+        setGoToCart(true)
+        addProduct(data, quantity)
       }
     return (
-        <div className='container'>
-          <div className='row'>
-        <div className='cold'>
+        <Container className='mis-productos'>
       <Card className="card" style={{ width: '20rem'}}>
         <Card.Img src={data.img}/>
         <Card.Body>
@@ -23,14 +27,10 @@ const ItemDetail = ({data}) => {
           <br />
           <Card.Title>Stock: {data.stock}</Card.Title>
           <Card.Title>Price: ${data.price}</Card.Title>
-          
-          <ItemCount initial={1} stock={data.stock} onAdd={onAdd}/>
+          {goToCart ? <Button variant="outline-danger" as={Link} to='/cart'>Comprar</Button> : <ItemCount initial={1} stock={data.stock} onAdd={onAdd}/>}
         </Card.Body>
       </Card>
-      </div>
-      </div>
-
-      </div>
+      </Container>
     );
   }
 // const ItemDetail = ({ data }) => {

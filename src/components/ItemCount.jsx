@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import Button from 'react-bootstrap/Button'
 
 const ItemCount = ({initial, stock, onAdd}) => {

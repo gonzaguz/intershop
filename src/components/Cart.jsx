@@ -1,30 +1,67 @@
-import { Container } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import React from 'react';
+import { Button, Table, ListGroup, ListGroupItem} from 'react-bootstrap';
+import { useCartContext } from '../context/CartContext'
+import { Link } from 'react-router-dom';
+import SendOrder from './SendOrder';
 
-function Cart() {
+
+
+const Cart = () => {
+  const { cart, totalPrice } = useCartContext()
+  const {  removeProduct } = useCartContext()
+
+  if (cart.length === 0) {
+    return ( 
+      <>
+      <div className='baner'><h1>Finaliza tu compra</h1></div>
+      <h2 className='cartv'>Tu carrito esta vacio!</h2>
+      <Button className='tiendacart' variant="outline-danger" as={Link} to='/productos'>Volver a la tienda</Button>
+      </>
+    )
+  }
+
   return (
-    <Container className='form'>
-    <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
-    </Container>
+    <>
+    <div className='baner'><h1>Finaliza tu compra</h1></div>
+    <div className='table'>
+       <Table hover>
+<thead>
+<tr className='table-danger'>
+  <th>Producto</th>
+  <th>Precio</th>
+  <th>Cantidad</th>
+  <th>Subtotal</th>
+  <th></th>
+</tr>
+</thead>
+<tbody className='table-group-divider'>
+    {
+      cart.map((product) => (
+        <tr key={product.id}>
+        <td><img className='rounded-circle' src={product.img} alt="" />{product.name}</td>
+        <td>${product.price}</td>
+        <td>{product.quantity}</td>
+        <td>${product.quantity * product.price}</td>
+        <td><Button variant="outline-danger" onClick={() => removeProduct(product.id)}>Eliminar</Button></td>
+        </tr>
+        ))}
+        </tbody>
+        </Table>
+            </div>
+    
+    <div className='finalizar'>
+    <h2>
+      Total del carrito
+    </h2>
+    <ListGroup className='total'>
+      <ListGroupItem>Total: ${totalPrice()}</ListGroupItem>
+    </ListGroup>
+    <SendOrder />
+    
+    
+    </div>
+    </>
+    
   );
 }
 
